@@ -1,0 +1,12 @@
+{
+  "name": "chzzk-discord-presence",
+  "version": "1.0.0",
+  "description": "치지직 방송을 내 디스코드 활동에 표시합니다.",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord-rpc": "^4.0.1",
+    "dotenv": "^16.4.5"
+  }
+}
