@@ -8,5 +8,5 @@ Node.JS v20 [다운로드](https://nodejs.org/dist/v20.11.1/node-v20.11.1-x64.ms
 치지직 채널 ID는 치지직 채널 URL 주소 뒤 채널 고유 ID를 의미합니다. 
 
 https://chzzk.naver.com/9381e7d6816e6d915a44a13c0195b202 -> 9381e7d6816e6d915a44a13c0195b202
-# 적용 예시 스크린샷\
+# 적용 예시 스크린샷
 <img src="https://github.com/AsHMagic/Chzzk-Discord-Presence/blob/main/images/example.png"></img>
