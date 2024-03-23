@@ -11,7 +11,8 @@ async function activity(url, channel_id) {
         const response = await fetch(url, {
             method: "GET",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36'
             }
         });
         if (response.ok) {
@@ -24,13 +25,12 @@ async function activity(url, channel_id) {
                     const channel_name = channel ? channel.channelName || 'None' : 'None';
                     const channel_image = channel ? (channel.channelImageUrl || "https://ssl.pstatic.net/cmstatic/nng/img/img_anonymous_square_gray_opacity2x.png?type=f120_120_na") : "https://ssl.pstatic.net/cmstatic/nng/img/img_anonymous_square_gray_opacity2x.png?type=f120_120_na";
                     const preview_image = (data.content.liveImageUrl || '').replace('{type}', '1080');
-                    const user_count_2 = user_count.toLocaleString();
                     if (RPC) {
                         RPC.setActivity({
                             details: liveTitle,
                             state: `${category} 하는 중`,
                             largeImageKey: preview_image,
-                            largeImageText: `${channel_name}`,
+                            largeImageText: `${channel_name} - ${user_count.toLocaleString()}명 시청 중`,
                             smallImageKey: 'https://ssl.pstatic.net/static/nng/glive/icon/favicon.png',
                             buttons: [
                                 {
@@ -47,9 +47,6 @@ async function activity(url, channel_id) {
         }
     } catch (error) {
         console.error("An error occurred:", error);
-    } finally {
-        await new Promise(resolve => setTimeout(resolve, process.env.TIME));
-        activity(url, channel_id);
     }
 }
 
