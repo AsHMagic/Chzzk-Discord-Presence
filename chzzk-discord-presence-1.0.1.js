@@ -18,17 +18,19 @@ async function activity(url, channel_id) {
         if (response.ok) {
             const data = await response.json();
             if (data && data.content) {
-                const { status, liveTitle, liveCategoryValue, concurrentUserCount, channel } = data.content;
+                const { status, liveTitle, liveCategoryValue, concurrentUserCount, channel, openDate } = data.content;
                 if (status === 'OPEN') {
                     const category = liveCategoryValue || '기타';
                     const user_count = concurrentUserCount || 'None';
                     const channel_name = channel ? channel.channelName || 'None' : 'None';
-                    const channel_image = channel ? (channel.channelImageUrl || "https://ssl.pstatic.net/cmstatic/nng/img/img_anonymous_square_gray_opacity2x.png?type=f120_120_na") : "https://ssl.pstatic.net/cmstatic/nng/img/img_anonymous_square_gray_opacity2x.png?type=f120_120_na";
                     const preview_image = (data.content.liveImageUrl || '').replace('{type}', '1080');
+                    const open_date = openDate
+                    
                     if (RPC) {
                         RPC.setActivity({
                             details: liveTitle,
                             state: `${category} 하는 중`,
+                            startTimestamp: new Date(open_date),
                             largeImageKey: preview_image,
                             largeImageText: `${channel_name} - ${user_count.toLocaleString()}명 시청 중`,
                             smallImageKey: 'https://ssl.pstatic.net/static/nng/glive/icon/favicon.png',
